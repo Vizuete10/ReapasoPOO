@@ -4,7 +4,7 @@ package retoNormal;
  * Representa un vehículo disponible para alquilar.
  * Gestiona los datos del vehículo y calcula los costes del alquiler.
  *
- * @author Alumno
+ * @author Alvaro Vizuete
  * @version 1.0
  */
 public class Vehiculo {

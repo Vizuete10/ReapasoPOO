@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Gestiona la colección de vehículos de la empresa de alquiler.
  * Permite añadir, buscar, modificar y eliminar vehículos.
  *
- * @author Alumno
+ * @author Alvaro Vizuete
  * @version 1.0
  */
 public class ListaVehiculos {
@@ -23,14 +23,14 @@ public class ListaVehiculos {
     /**
      * Añade un vehículo si su matrícula no existe ya.
      *
-     * @param v Vehículo a añadir
+     * @param vehiculoAñadir Vehículo a añadir
      * @return true si se añadió, false si la matrícula ya estaba
      */
-    public boolean anadirVehiculo(Vehiculo v) {
-        if (buscarPorMatricula(v.getMatricula()) != null) {
+    public boolean anadirVehiculo(Vehiculo vehiculoAñadido) {
+        if (buscarPorMatricula(vehiculoAñadido.getMatricula()) != null) {
             return false;
         }
-        vehiculos.add(v);
+        vehiculos.add(vehiculoAñadido);
         return true;
     }
 
@@ -40,8 +40,8 @@ public class ListaVehiculos {
             System.out.println("No hay vehículos registrados.");
             return;
         }
-        for (Vehiculo v : vehiculos) {
-            System.out.println(v);
+        for (Vehiculo vehiculoAñadido : vehiculos) {
+            System.out.println(vehiculoAñadido);
             System.out.println("-----------------------------");
         }
     }
@@ -53,8 +53,8 @@ public class ListaVehiculos {
      * @return El vehículo encontrado, o null si no existe
      */
     public Vehiculo buscarPorMatricula(String matricula) {
-        for (Vehiculo v : vehiculos) {
-            if (v.getMatricula().equalsIgnoreCase(matricula)) return v;
+        for (Vehiculo vehiculoAñadido : vehiculos) {
+            if (vehiculoAñadido.getMatricula().equalsIgnoreCase(matricula)) return vehiculoAñadido;
         }
         return null;
     }
@@ -67,9 +67,9 @@ public class ListaVehiculos {
      * @return true si se modificó, false si no se encontró
      */
     public boolean modificarDiasAlquilados(String matricula, int dias) {
-        Vehiculo v = buscarPorMatricula(matricula);
-        if (v == null) return false;
-        v.setDiasAlquilados(dias);
+        Vehiculo vehiculoAñadido = buscarPorMatricula(matricula);
+        if (vehiculoAñadido == null) return false;
+        vehiculoAñadido.setDiasAlquilados(dias);
         return true;
     }
 
@@ -81,9 +81,9 @@ public class ListaVehiculos {
      * @return true si se modificó, false si no se encontró
      */
     public boolean modificarRecargoPremium(String matricula, double porcentaje) {
-        Vehiculo v = buscarPorMatricula(matricula);
-        if (v == null) return false;
-        v.setPorcentajeRecargo(porcentaje);
+        Vehiculo vehiculoAñadido = buscarPorMatricula(matricula);
+        if (vehiculoAñadido == null) return false;
+        vehiculoAñadido.setPorcentajeRecargo(porcentaje);
         return true;
     }
 
@@ -94,9 +94,9 @@ public class ListaVehiculos {
      * @return true si se eliminó, false si no existía
      */
     public boolean eliminarPorMatricula(String matricula) {
-        Vehiculo v = buscarPorMatricula(matricula);
-        if (v == null) return false;
-        vehiculos.remove(v);
+        Vehiculo vehiculoAñadido = buscarPorMatricula(matricula);
+        if (vehiculoAñadido == null) return false;
+        vehiculos.remove(vehiculoAñadido);
         return true;
     }
 
@@ -107,8 +107,8 @@ public class ListaVehiculos {
      */
     public double calcularIngresoTotalRecargos() {
         double total = 0;
-        for (Vehiculo v : vehiculos) {
-            total += v.getImporteRecargoPremium();
+        for (Vehiculo vehiculoAñadido : vehiculos) {
+            total += vehiculoAñadido.getImporteRecargoPremium();
         }
         return total;
     }
@@ -116,9 +116,8 @@ public class ListaVehiculos {
     /** Muestra los vehículos cuyo recargo premium supera el 12%. */
     public void listarVehiculosPremium() {
         boolean hayPremium = false;
-        for (Vehiculo v : vehiculos) {
-            if (v.esPremium()) {
-                System.out.println(v);
+        for (Vehiculo vehiculoAñadido : vehiculos) {
+            if (vehiculoAñadido.esPremium()) {
                 System.out.println("-----------------------------");
                 hayPremium = true;
             }
